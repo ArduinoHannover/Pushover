@@ -10,11 +10,11 @@ void Pushover::setMessage(String message) {
 void Pushover::setDevice(String device) {
 	_device = device;
 }
-void Pushover::setTitle(String message) {
-	_message = message;
+void Pushover::setTitle(String title) {
+	_title = title;
 }
-void Pushover::setUrl(String message) {
-	_message = message;
+void Pushover::setUrl(String url) {
+	_url = url;
 }
 void Pushover::setUrlTitle(String url_title) {
 	_url_title = url_title;
@@ -47,6 +47,7 @@ boolean Pushover::send(void) {
 	}
 	String post = String("token=")+_token+"&user="+_user+"&title="+_title+"&message="+_message+"&device="+_device+"&url="+_url+"&url_title="+_url_title+"&priority="+_priority+"&retry="+_retry+"&expire="+_expire+"&sound="+_sound;
 	if (_timestamp != 0) post += String("&timestamp=")+_timestamp;
+	if (_html == true) post += String("&html=1");
 	String http = String("POST /1/messages.json HTTP/1.1\r\nHost: api.pushover.net\r\nConnection: close\r\nAccept: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nContent-Length: ")+post.length()+"\r\n\r\n"+post;
 	client.print(http);
 	int timeout_at = millis() + _timeout;
