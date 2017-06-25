@@ -56,9 +56,13 @@ boolean Pushover::send(void) {
 		return false;
 	}
 	String line;
-	while (client.available() != 0) {
+	while (client.connected()) {
 		if (client.read() == '{') break;
 	}
 	line = client.readStringUntil('\n');
-	return line.indexOf("\"status\":1") != -1;
+	if(line.indexOf("\"status\":1")==-1) {
+		return false;
+	} else {
+		return true;
+	}
 }
