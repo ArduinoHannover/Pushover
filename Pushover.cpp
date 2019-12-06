@@ -42,6 +42,7 @@ void Pushover::setHTML(boolean html) {
 }
 boolean Pushover::send(void) {
 	WiFiClientSecure client;
+	client.setInsecure();
 	if (!client.connect("api.pushover.net", 443)) {
 		return false;
 	}
