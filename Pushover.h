@@ -1,9 +1,15 @@
 #include <WiFiClientSecure.h>
 
+enum SafeMode {
+	SAFE = 0,
+	UNSAFE = 1
+};
+
 class Pushover {
 	private:
 		String _token;
 		String _user;
+		bool _unsafe;
 		String _message;
 		String _device;
 		String _title;
@@ -17,7 +23,7 @@ class Pushover {
 		uint16_t _timeout = 5000;
 		String _sound;
 	public:
-		Pushover(String,String);
+		Pushover(String,String,bool);
 		void setMessage(String);
 		void setDevice(String);
 		void setTitle(String);
