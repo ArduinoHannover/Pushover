@@ -1,8 +1,9 @@
 #include "Pushover.h"
 
-Pushover::Pushover(String token, String user) {
+Pushover::Pushover(String token, String user, bool unsafe = false) {
 	_token = token;
 	_user = user;
+	_unsafe = unsafe;
 }
 void Pushover::setMessage(String message) {
 	_message = message;
@@ -42,6 +43,10 @@ void Pushover::setHTML(boolean html) {
 }
 boolean Pushover::send(void) {
 	WiFiClientSecure client;
+	if (_unsafe) {
+		client.setInsecure();
+	}
+
 	if (!client.connect("api.pushover.net", 443)) {
 		return false;
 	}

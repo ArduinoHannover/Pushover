@@ -4,7 +4,7 @@ Pushover Library for ESP8266
 ## Usage
 The library offers almost all functions.
 
-Initialize a new Pushover: `Pushover pushover = Pushover("myAppToken","myUserToken");`
+Initialize a new unsafed Pushover: `Pushover pushover = Pushover("myAppToken","myUserToken", UNSAFE);`
 
 Then you can call the setters and if you're done, just call `pushover.send()` which will return true on success.
 

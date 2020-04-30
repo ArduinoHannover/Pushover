@@ -7,7 +7,7 @@ void setup() {
 	while (WiFi.status() != WL_CONNECTED) delay(50);
 	Serial.println("Connected");
 	
-	Pushover po = Pushover("SecureAppToken","UserToken");
+	Pushover po = Pushover("SecureAppToken","UserToken", UNSAFE);
 	po.setDevice("Device1");
 	po.setMessage("Testnotification");
 	po.setSound("bike");
