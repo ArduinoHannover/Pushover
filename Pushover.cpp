@@ -65,5 +65,5 @@ boolean Pushover::send(void) {
 		if (client.read() == '{') break;
 	}
 	line = client.readStringUntil('\n');
-	return line.indexOf("\"status\":1") != -1;
+	return line.indexOf("\"status\":1") != -1 || line.indexOf("200 OK") != -1;
 }
