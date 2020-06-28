@@ -44,7 +44,7 @@ void Pushover::setHTML(boolean html) {
 boolean Pushover::send(void) {
 	WiFiClientSecure client;
 	if (_unsafe) {
-		client.setInsecure();
+		//client.setInsecure(); //not working with ESP32
 	}
 
 	if (!client.connect("api.pushover.net", 443)) {
